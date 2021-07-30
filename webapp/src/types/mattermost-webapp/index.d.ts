@@ -1,5 +1,10 @@
-export interface PluginRegistry {
-    registerPostTypeComponent(typeName: string, component: React.ElementType)
+import React from 'react';
 
-    // Add more if needed from https://developers.mattermost.com/extend/plugins/webapp/reference
+import image_upload_modal from '../../components/image_upload_modal';
+
+export interface PluginRegistry {
+
+    registerRootComponent(ImageUploadModal: any);
+    registerFilesWillUploadHook(arg0: (files: any, upload: any) => { message: string; files: any; });
+    registerPostTypeComponent(typeName: string, component: React.ElementType);
 }
