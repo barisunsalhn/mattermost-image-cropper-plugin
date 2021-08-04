@@ -1,0 +1,13 @@
+.container {
+    width: auto;
+}
+.modal-image {
+    &.screenshot {
+        max-width: 90%;
+    }
+}
+.modal-body {
+    &.screenshot {
+        height: 80%
+    }
+}

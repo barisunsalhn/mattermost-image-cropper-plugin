@@ -8,7 +8,12 @@ import PropTypes from 'prop-types';
 //eslint-disable-next-line import/no-unresolved
 import {Point} from 'react-easy-crop/types';
 import {connect} from 'react-redux';
+import './image_upload_modal.scss';
 
+import {UPLOAD_IMAGE} from '../action_types';
+import manifest from 'manifest';
+import {cropImageAccordingToUsersChoice} from '../index';
+/* eslint-disable no-param-reassign, no-console */
 type Props = {
 
     /**
@@ -26,37 +31,28 @@ type Props = {
      */
     aspectRatio: number;
 
-    /**
-     *  React-easy-crop library returns cropped area pixels during crop operation, and we need to pass that to file upload component to enable user to crop specified area.
-     */
-    setCroppedAreaPixels: (pixels: {[dimension: string]: number}) => void;
-
-    /**
-     *  Handle final crop state after user presses one of two buttons.
-     */
-    handleFinalCrop: (shouldCrop: boolean) => void;
+    closeModal: () => void;
 
 }
 
 type State = {
     crop: Point;
     zoom: number;
+    croppedAreaPixels: {[startPointsAndDimensions: string]: number};
 };
 class ImageUploadModal extends React.PureComponent<Props, State> {
     static propTypes = {
         imgURL: PropTypes.string.isRequired,
         show: PropTypes.bool.isRequired,
         aspectRatio: PropTypes.number.isRequired,
-        setCroppedAreaPixels: PropTypes.func.isRequired,
-        handleFinalCrop: PropTypes.func.isRequired,
 
     }
-
     constructor(props: any) {
         super(props);
         this.state = {
             crop: {x: 0, y: 0},
             zoom: 1,
+            croppedAreaPixels: {x: 0, y: 0, width: 0, height: 0},
         };
     }
     onCropChange = (crop: Point): void => {
@@ -64,7 +60,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
     }
 
     onCropComplete = (croppedArea: {[startPointsAndDimensions: string]: number}, croppedAreaPixels: {[startPointsAndDimensions: string]: number}): void => {
-        this.props.setCroppedAreaPixels(croppedAreaPixels);
+        this.setState({croppedAreaPixels});
     }
 
     onZoomChange = (zoom: number): void => {
@@ -72,8 +68,8 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
     }
 
     handleButtonClick =(shouldCrop: boolean): void => {
-        this.props.handleFinalCrop(shouldCrop);
-        doNothing();
+        cropImageAccordingToUsersChoice(shouldCrop, this.state.croppedAreaPixels);
+        this.props.closeModal();
     }
 
     render() {
@@ -113,41 +109,45 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
             />
         );
         return (
-            <Modal
-                show={this.props.show}
-                onHide={doNothing}
-                dialogClassName='a11y__modal modal-image screenshot'
-                role='dialog'
-                aria-labelledby='screenshotUploadModalLabel'
-            >
-                <Modal.Header
-                    closeButton={true}
+            this.props.show === true ?
+                <Modal
+                    show={true}
+                    onHide={this.props.closeModal}
+                    dialogClassName='a11y__modal modal-image screenshot'
+                    role='dialog'
+                    aria-labelledby='screenshotUploadModalLabel'
                 >
-                    <div>{'Please crop...'}</div>
-                </Modal.Header>
-                <Modal.Body className='screenshot'>
-                    <div>{originalScreenshotDOMElement}</div>
-                </Modal.Body>
-                <Modal.Footer>
-                    {fullyUploadButton}
-                    {cropButton}
-                </Modal.Footer>
-            </Modal>
-        );
+                    <Modal.Header
+                        closeButton={true}
+                    >
+                        <div>{'Please crop your image or screenshot pasted...'}</div>
+                    </Modal.Header>
+                    <Modal.Body className='screenshot'>
+                        <div>{originalScreenshotDOMElement}</div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {fullyUploadButton}
+                        {cropButton}
+                    </Modal.Footer>
+                </Modal> : null);
     }
 }
 /* eslint-disable no-param-reassign, no-console ,func-names, func-style */
 
-const doNothing = function() {
-    console.log(1);
-};
 const mapStateToProps = function(state : any) {
     return {
-        imgURL: state.imgURL,
-        aspectRatio: state.aspectRatio,
-        handleFinalCrop: state.handleFinalCrop,
-        setCroppedAreaPixels: state.setCroppedAreaPixels,
-        show: state.show,
+        imgURL: state['plugins-' + manifest.id].imgURL,
+        aspectRatio: state['plugins-' + manifest.id].aspectRatio,
+        show: state['plugins-' + manifest.id].show,
     };
 };
-export default connect(mapStateToProps)(ImageUploadModal);
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        closeModal: () => {
+            dispatch({type: UPLOAD_IMAGE, show: false});
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageUploadModal);
