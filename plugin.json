@@ -1,11 +1,11 @@
 {
     "id": "lapaz17.plugin-image-cropper",
-    "name": "Plugin Starter Template",
-    "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
-    "homepage_url": "https://github.com/mattermost/mattermost-plugin-starter-template",
-    "support_url": "https://github.com/mattermost/mattermost-plugin-starter-template/issues",
-    "release_notes_url": "https://github.com/mattermost/mattermost-plugin-starter-template/releases/tag/v0.1.0",
-    "icon_path": "assets/starter-template-icon.svg",
+    "name": "Image cropper plugin",
+    "description": "This plugin enables users to crop images/screenshots while adding them to chat.",
+    "homepage_url": "https://github.com/lapaz17/mattermost-image-cropper-plugin",
+    "support_url": "https://github.com/lapaz17/mattermost-image-cropper-plugin/issues",
+    "release_notes_url": "https://github.com/lapaz17/mattermost-image-cropper-plugin/releases/tag/v0.1.0",
+    "icon_path": "assets/ftcrop.svg",
     "version": "0.1.0",
     "min_server_version": "5.12.0",
    
