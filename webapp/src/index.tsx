@@ -2,19 +2,16 @@ import {Store, Action} from 'redux';
 
 import {GlobalState} from 'mattermost-redux/types/store';
 
-import {types} from '@babel/core';
-
 import manifest from './manifest';
-/* eslint-disable no-param-reassign, no-console */
-// eslint-disable-next-line import/no-unresolved
+/* eslint-disable no-param-reassign, import/no-unresolved*/
+
 import {PluginRegistry} from './types/mattermost-webapp';
 import ImageUploadModal from './components/image_upload_modal';
-import {UPLOAD_IMAGE, INITIALIZE} from './action_types';
+import {UPLOAD_IMAGE} from './action_types';
 import imageUploadModalVisible from './reducer';
-export {cropImageAccordingToUsersChoice};
+
 let image: any;
 let uploadAfterUserDecision : any;
-const imagePastedAt = 'Image Pasted at ';
 
 export default class Plugin {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
@@ -94,3 +91,4 @@ async function cropImageAccordingToUsersChoice(shouldCrop: boolean, imageUploadC
 
 window.registerPlugin(manifest.id, new Plugin());
 
+export {cropImageAccordingToUsersChoice};

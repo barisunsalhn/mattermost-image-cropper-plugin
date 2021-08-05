@@ -2,12 +2,20 @@
     width: auto;
 }
 .modal-image {
-    &.screenshot {
-        max-width: 90%;
+    &.image {
+        max-width: 90% !important;
+        text-align: center;
+        margin-top: 2% !important;
+        margin-bottom: 2% !important;
     }
 }
 .modal-body {
-    &.screenshot {
-        height: 80%
+    &.image {
+        height: 80% !important;
+    }
+}
+.modal-header {
+    &.image {
+        display: grid;
     }
 }

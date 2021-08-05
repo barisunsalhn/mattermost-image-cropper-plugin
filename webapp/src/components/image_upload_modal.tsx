@@ -31,6 +31,9 @@ type Props = {
      */
     aspectRatio: number;
 
+    /**
+     *  Used for closing modal.
+     */
     closeModal: () => void;
 
 }
@@ -40,6 +43,7 @@ type State = {
     zoom: number;
     croppedAreaPixels: {[startPointsAndDimensions: string]: number};
 };
+
 class ImageUploadModal extends React.PureComponent<Props, State> {
     static propTypes = {
         imgURL: PropTypes.string.isRequired,
@@ -55,6 +59,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
             croppedAreaPixels: {x: 0, y: 0, width: 0, height: 0},
         };
     }
+
     onCropChange = (crop: Point): void => {
         this.setState({crop});
     }
@@ -83,6 +88,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
                 {'Upload full'}
             </button>
         );
+
         const cropButton = (
             <button
                 type='button'
@@ -95,7 +101,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
         );
 
         //React-easy-crop is chosen over react-cropper due to this https://github.com/react-cropper/react-cropper/issues/555
-        const originalScreenshotDOMElement = (
+        const imageDOMElement = (
             <Cropper
                 image={this.props.imgURL}
                 crop={this.state.crop}
@@ -105,25 +111,27 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
                 onCropComplete={this.onCropComplete}
                 onZoomChange={this.onZoomChange}
                 showGrid={false}
-                classes={{containerClassName: 'container', mediaClassName: 'img screenshot'}}
+                classes={{containerClassName: 'container'}}
             />
         );
+
         return (
             this.props.show === true ?
                 <Modal
                     show={true}
                     onHide={this.props.closeModal}
-                    dialogClassName='a11y__modal modal-image screenshot'
+                    dialogClassName='a11y__modal modal-image image'
                     role='dialog'
-                    aria-labelledby='screenshotUploadModalLabel'
+                    aria-labelledby='imageUploadModalLabel'
                 >
                     <Modal.Header
                         closeButton={true}
+                        className={'image'}
                     >
                         <div>{'Please crop your image or screenshot pasted...'}</div>
                     </Modal.Header>
-                    <Modal.Body className='screenshot'>
-                        <div>{originalScreenshotDOMElement}</div>
+                    <Modal.Body className='image'>
+                        <div>{imageDOMElement}</div>
                     </Modal.Body>
                     <Modal.Footer>
                         {fullyUploadButton}
@@ -132,7 +140,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
                 </Modal> : null);
     }
 }
-/* eslint-disable no-param-reassign, no-console ,func-names, func-style */
+/* eslint-disable no-param-reassign ,func-names, func-style */
 
 const mapStateToProps = function(state : any) {
     return {
