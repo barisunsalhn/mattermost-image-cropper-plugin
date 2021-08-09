@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/imageUploadModal should match snapshot after clicking crop button, modal not shown 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="imageUploadModalLabel"
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  dialogClassName="modal-image image"
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  role="dialog"
+  show={true}
+>
+  <ModalHeader
+    className="image"
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <div>
+      Please crop your image or screenshot pasted...
+    </div>
+  </ModalHeader>
+  <ModalBody
+    className="image"
+  >
+    <div>
+      <Cropper
+        aspect={1.7777777777777777}
+        classes={
+          Object {
+            "containerClassName": "container",
+          }
+        }
+        crop={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        cropShape="rect"
+        image="test"
+        maxZoom={3}
+        mediaProps={Object {}}
+        minZoom={1}
+        objectFit="contain"
+        onCropChange={[Function]}
+        onCropComplete={[Function]}
+        onZoomChange={[Function]}
+        restrictPosition={true}
+        rotation={0}
+        showGrid={false}
+        style={Object {}}
+        zoom={1}
+        zoomSpeed={1}
+        zoomWithScroll={true}
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter>
+    <button
+      className="btn btn-primary save-button"
+      id="uploadFullButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Upload full
+    </button>
+    <button
+      className="btn btn-primary save-button"
+      id="cropButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Crop
+    </button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`components/imageUploadModal should match snapshot after clicking upload full button, modal not shown 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="imageUploadModalLabel"
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  dialogClassName="modal-image image"
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  role="dialog"
+  show={true}
+>
+  <ModalHeader
+    className="image"
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <div>
+      Please crop your image or screenshot pasted...
+    </div>
+  </ModalHeader>
+  <ModalBody
+    className="image"
+  >
+    <div>
+      <Cropper
+        aspect={1.7777777777777777}
+        classes={
+          Object {
+            "containerClassName": "container",
+          }
+        }
+        crop={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        cropShape="rect"
+        image="test"
+        maxZoom={3}
+        mediaProps={Object {}}
+        minZoom={1}
+        objectFit="contain"
+        onCropChange={[Function]}
+        onCropComplete={[Function]}
+        onZoomChange={[Function]}
+        restrictPosition={true}
+        rotation={0}
+        showGrid={false}
+        style={Object {}}
+        zoom={1}
+        zoomSpeed={1}
+        zoomWithScroll={true}
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter>
+    <button
+      className="btn btn-primary save-button"
+      id="uploadFullButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Upload full
+    </button>
+    <button
+      className="btn btn-primary save-button"
+      id="cropButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Crop
+    </button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`components/imageUploadModal should match snapshot, modal not shown 1`] = `""`;
+
+exports[`components/imageUploadModal should match snapshot, modal shown 1`] = `
+<Modal
+  animation={true}
+  aria-labelledby="imageUploadModalLabel"
+  autoFocus={true}
+  backdrop={true}
+  dialogAs={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "ModalDialog",
+      "render": [Function],
+    }
+  }
+  dialogClassName="modal-image image"
+  enforceFocus={true}
+  keyboard={true}
+  onHide={[Function]}
+  restoreFocus={true}
+  role="dialog"
+  show={true}
+>
+  <ModalHeader
+    className="image"
+    closeButton={true}
+    closeLabel="Close"
+  >
+    <div>
+      Please crop your image or screenshot pasted...
+    </div>
+  </ModalHeader>
+  <ModalBody
+    className="image"
+  >
+    <div>
+      <Cropper
+        aspect={1.7777777777777777}
+        classes={
+          Object {
+            "containerClassName": "container",
+          }
+        }
+        crop={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        cropShape="rect"
+        image="test"
+        maxZoom={3}
+        mediaProps={Object {}}
+        minZoom={1}
+        objectFit="contain"
+        onCropChange={[Function]}
+        onCropComplete={[Function]}
+        onZoomChange={[Function]}
+        restrictPosition={true}
+        rotation={0}
+        showGrid={false}
+        style={Object {}}
+        zoom={1}
+        zoomSpeed={1}
+        zoomWithScroll={true}
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter>
+    <button
+      className="btn btn-primary save-button"
+      id="uploadFullButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Upload full
+    </button>
+    <button
+      className="btn btn-primary save-button"
+      id="cropButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Crop
+    </button>
+  </ModalFooter>
+</Modal>
+`;

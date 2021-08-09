@@ -120,7 +120,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
                 <Modal
                     show={true}
                     onHide={this.props.closeModal}
-                    dialogClassName='a11y__modal modal-image image'
+                    dialogClassName='modal-image image'
                     role='dialog'
                     aria-labelledby='imageUploadModalLabel'
                 >
