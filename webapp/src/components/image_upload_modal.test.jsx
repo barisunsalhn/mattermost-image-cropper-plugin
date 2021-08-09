@@ -4,7 +4,7 @@ import {shallow} from 'enzyme';
 
 import {Modal} from 'react-bootstrap';
 
-import ImageUploadModal from './image_upload_modal';
+import {ImageUploadModal} from './image_upload_modal';
 
 describe('components/imageUploadModal', () => {
     const baseProps = {

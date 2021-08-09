@@ -1,5 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {connect} from 'react-redux';
 
 import React from 'react';
 import {Modal} from 'react-bootstrap';
@@ -7,12 +8,14 @@ import Cropper from 'react-easy-crop';
 import PropTypes from 'prop-types';
 //eslint-disable-next-line import/no-unresolved
 import {Point} from 'react-easy-crop/types';
-import {connect} from 'react-redux';
+
 import './image_upload_modal.scss';
 
-import {UPLOAD_IMAGE} from '../action_types';
-import manifest from 'manifest';
 import {cropImageAccordingToUsersChoice} from '../index';
+
+import manifest from 'manifest';
+import {UPLOAD_IMAGE} from '../action_types';
+
 /* eslint-disable no-param-reassign, no-console */
 type Props = {
 
@@ -44,7 +47,7 @@ type State = {
     croppedAreaPixels: {[startPointsAndDimensions: string]: number};
 };
 
-class ImageUploadModal extends React.PureComponent<Props, State> {
+export class ImageUploadModal extends React.PureComponent<Props, State> {
     static propTypes = {
         imgURL: PropTypes.string.isRequired,
         show: PropTypes.bool.isRequired,
@@ -74,16 +77,21 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
 
     handleButtonClick =(shouldCrop: boolean): void => {
         cropImageAccordingToUsersChoice(shouldCrop, this.state.croppedAreaPixels);
+        this.closeModalAndResetState();
+    }
+
+    closeModalAndResetState = (): void => {
+        this.setState({zoom: 1, crop: {x: 0, y: 0}, croppedAreaPixels: {x: 0, y: 0, width: 0, height: 0}});
         this.props.closeModal();
     }
 
     render() {
-        const fullyUploadButton = (
+        const uploadFullButton = (
             <button
                 type='button'
                 className='btn btn-primary save-button'
                 onClick={() => this.handleButtonClick(false)}
-                id='fullyUploadButton'
+                id='uploadFullButton'
             >
                 {'Upload full'}
             </button>
@@ -119,7 +127,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
             this.props.show === true ?
                 <Modal
                     show={true}
-                    onHide={this.props.closeModal}
+                    onHide={this.closeModalAndResetState}
                     dialogClassName='modal-image image'
                     role='dialog'
                     aria-labelledby='imageUploadModalLabel'
@@ -134,7 +142,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
                         <div>{imageDOMElement}</div>
                     </Modal.Body>
                     <Modal.Footer>
-                        {fullyUploadButton}
+                        {uploadFullButton}
                         {cropButton}
                     </Modal.Footer>
                 </Modal> : null);
@@ -142,7 +150,7 @@ class ImageUploadModal extends React.PureComponent<Props, State> {
 }
 /* eslint-disable no-param-reassign ,func-names, func-style */
 
-const mapStateToProps = function(state : any) {
+const mapStateToProps = (state: any) => {
     return {
         imgURL: state['plugins-' + manifest.id].imgURL,
         aspectRatio: state['plugins-' + manifest.id].aspectRatio,

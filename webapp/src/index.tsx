@@ -3,7 +3,7 @@ import {Store, Action} from 'redux';
 import {GlobalState} from 'mattermost-redux/types/store';
 
 import manifest from './manifest';
-/* eslint-disable no-param-reassign, import/no-unresolved*/
+/* eslint-disable no-param-reassign, import/no-unresolved, @typescript-eslint/no-empty-function*/
 
 import {PluginRegistry} from './types/mattermost-webapp';
 import ImageUploadModal from './components/image_upload_modal';
@@ -47,9 +47,15 @@ export default class Plugin {
 
 declare global {
     interface Window {
-        registerPlugin(id: string, plugin: Plugin): void
+        registerPlugin(id: string, plugin: Plugin): void;
+        plugins: any;
     }
 }
+
+//For passing tests I added this, https://stackoverflow.com/questions/60024540/i-ran-the-tests-i-wrote-using-jest-i-received-an-unexpected-error-typeerror
+Window.prototype.registerPlugin = (id: string, plugin: Plugin): void => {
+
+};
 async function cropImageAccordingToUsersChoice(shouldCrop: boolean, imageUploadCroppedAreaPixels : {[startPointsAndDimensions: string]: number}) {
     let newFile: any;
 
