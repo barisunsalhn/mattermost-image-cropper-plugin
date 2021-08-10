@@ -13,4 +13,4 @@ A plugin to crop images/screenshots while uploading them to chat.
 Just try to upload image or paste screenshot of your screen to chat, a new Modal will appear. There should be 2 buttons on Modal, choose according to your taste! See Gif below:
 
 
-[Gif showing the modal](https://github.com/lapaz17/Gif/raw/main/output.gif)
+![Gif showing the modal](https://media.giphy.com/media/L7zxed3zfSQkHPpg6f/giphy.gif)
