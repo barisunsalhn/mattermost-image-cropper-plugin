@@ -1,5 +1,5 @@
 {
-    "id": "lapaz17.plugin-image-cropper",
+    "id": "com.lapaz17.mattermost-plugin-image-cropper",
     "name": "Image/Screenshot cropper",
     "description": "This plugin enables users to crop images/screenshots while adding them to chat.",
     "homepage_url": "https://github.com/lapaz17/mattermost-image-cropper-plugin",
